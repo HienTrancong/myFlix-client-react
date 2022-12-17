@@ -561,7 +561,7 @@ const root = (0, _client.createRoot)(container);
 root.render(/*#__PURE__*/ React.createElement(MyFlixApplication, {
     __source: {
         fileName: "src/index.jsx",
-        lineNumber: 20,
+        lineNumber: 22,
         columnNumber: 13
     },
     __self: undefined
