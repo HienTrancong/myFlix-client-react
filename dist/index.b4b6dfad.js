@@ -26301,67 +26301,29 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            _id: "61db16488a86b50b628b9d36",
-            Title: "Drive My Car",
-            Description: "An aging, widowed actor seeks a chauffeur. The actor turns to his go-to mechanic, who ends up recommending a 20-year-old girl. Despite their initial misgivings, a very special relationship develops between the two.",
-            Genre: {
-                Name: "Drama",
-                Description: "In film and television, drama is a category of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre, such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy)."
-            },
-            Director: {
-                Name: "Ry\xfbsuke Hamaguchi",
-                Bio: "Ryusuke Hamaguchi is a Japanese film director and screenwriter.",
-                Birth: "1978",
-                Death: null
-            },
-            ImagePath: "https://www.cinemaclock.com/images/posters/1000x1500/67/-doraibu-mai-ka-2021-2021-i-movie-poster.jpg",
-            Featured: false
-        },
-        {
-            _id: "61db17888a86b50b628b9d38",
-            Title: "Slalom",
-            Description: "Under the guidance of a strict ex champion, a promising 15 year old girl trains as a professional skiing star. Will she be able to endure the physical and emotional pressures?The film follows Lyz Lopez, a 15-year-old up-an-coming skiing star who's under training by ex-champion Fred. As the film unfurls, Fred's tutoring crosses into the realm of emotional and physical abuse. It further leads to developing an unhealthy physical relationship that gives validation to them both.",
-            Genre: {
-                Name: "Drama",
-                Description: "In film and television, drama is a category of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre, such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy)."
-            },
-            Director: {
-                Name: "Charl\xe8ne Favier",
-                Bio: "Charl\xe8ne Favier is a director and writer, known for Slalom (2020), Omessa (2015).",
-                Birth: "1985",
-                Death: null
-            },
-            ImagePath: "https://www.cinemaclock.com/images/posters/1000x1500/86/slalom-2020-i-movie-poster.jpg",
-            Featured: false
-        },
-        {
-            _id: "61db14fb8a86b50b628b9d35",
-            Title: "For Those Who Can Tell No Tales",
-            Description: "An Australian tourist discovers the legacy of war-time atrocities when she stays in a town on the border of Bosnia and Serbia.",
-            Genre: {
-                Name: "Drama",
-                Description: "In film and television, drama is a category of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.Drama of this kind is usually qualified with additional terms that specify its particular super-genre, macro-genre, or micro-genre, such as soap opera, police crime drama, political drama, legal drama, historical drama, domestic drama, teen drama, and comedy-drama (dramedy)."
-            },
-            Director: {
-                Name: "Jasmila Zbanic",
-                Bio: "Jasmila Žbanić is a Bosnian film director, screenwriter and producer, best known for having written and directed Quo Vadis, Aida?, which earned her nominations for the Academy Award for Best Foreign Language Film, the BAFTA Award for Best Film Not in the English Language, and the BAFTA Award for Best Direction.Jasmila Zbanic was born on December 19, 1974 in Sarajevo, Bosnia and Herzegovina, Yugoslavia.",
-                Birth: "1974",
-                Death: null
-            },
-            ImagePath: "https://www.cinemaclock.com/images/posters/1000x1500/96/za-one-koji-ne-mogu-da-govore-2013-orig-poster.jpg",
-            Featured: false
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    //fetch movies data from API
+    (0, _react.useEffect)(()=>{
+        fetch("https://hien-tran-080222.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            console.log("movies from api:", data);
+        // const moviesFromApi = data.map((movie) => {
+        //   return {
+        //     id: movie._id,
+        //     title: movie.Title,
+        //     image: movie.ImagePath
+        //   }
+        // })
+        });
+    // setMovies(moviesFromApi);
+    }, []);
     //if SelectedMovie is not null
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 30,
         columnNumber: 7
     }, undefined);
     //if Movie state is empty array
@@ -26369,7 +26331,7 @@ const MainView = ()=>{
         children: " The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 45,
+        lineNumber: 38,
         columnNumber: 12
     }, undefined);
     //if book state is not empty array
@@ -26385,30 +26347,30 @@ const MainView = ()=>{
                         }
                     }, movie._id, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 52,
+                        lineNumber: 45,
                         columnNumber: 18
                     }, undefined);
                 })
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 50,
+                lineNumber: 43,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 children: "Test"
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 59,
+                lineNumber: 52,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 49,
+        lineNumber: 42,
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "dj4+Q24EVuDamSaT7j6ArDWR2bY=");
+_s(MainView, "PO+XgOji7E32nFJj3H5UPLPJ7w4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -26418,7 +26380,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx"}],"aZGcn":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq"}],"aZGcn":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27283,7 +27245,42 @@ module.exports = require("d0392972035964a");
     exports.jsxDEV = jsxDEV$1;
 })();
 
-},{"93b5e071f13be0f5":"21dqq"}],"eu8Dq":[function(require,module,exports) {
+},{"93b5e071f13be0f5":"21dqq"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const MovieCard = ({ movie , onMovieClick  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: ()=>{
+            onMovieClick(movie);
+        },
+        children: [
+            " ",
+            movie.Title
+        ]
+    }, void 0, true, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 3,
+        columnNumber: 5
+    }, undefined);
+};
+_c = MovieCard;
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq"}],"eu8Dq":[function(require,module,exports) {
 "use strict";
 var Refresh = require("38a5f3a70e884491");
 function debounce(func, delay) {
@@ -27417,42 +27414,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"38a5f3a70e884491":"3TpL4"}],"bwuIu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$67b2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieCard", ()=>MovieCard);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-const MovieCard = ({ movie , onMovieClick  })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        onClick: ()=>{
-            onMovieClick(movie);
-        },
-        children: [
-            " ",
-            movie.Title
-        ]
-    }, void 0, true, {
-        fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 3,
-        columnNumber: 5
-    }, undefined);
-};
-_c = MovieCard;
-var _c;
-$RefreshReg$(_c, "MovieCard");
-
-  $parcel$ReactRefreshHelpers$67b2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq"}],"ggaUx":[function(require,module,exports) {
+},{"38a5f3a70e884491":"3TpL4"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27468,7 +27430,8 @@ const MovieView = ({ movie , onBackClick  })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: movie.ImagePath
+                    src: movie.ImagePath,
+                    height: 500
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 5,
@@ -27547,6 +27510,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq"}]},["5YNVE","jQ1cM","d8Dch"], "d8Dch", "parcelRequire3d7b")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"aZGcn","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"eu8Dq"}]},["5YNVE","jQ1cM","d8Dch"], "d8Dch", "parcelRequire3d7b")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
