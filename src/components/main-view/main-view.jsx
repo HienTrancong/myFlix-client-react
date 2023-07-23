@@ -1,35 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
 
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
 
   //fetch movies data from API
   useEffect(() => {
-    fetch("https://hien-tran-080222.herokuapp.com/movies")
+    fetch("https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         console.log("movies from api:", data);
-        // const moviesFromApi = data.map((movie) => {
-        //   return {
-        //     id: movie._id,
-        //     title: movie.Title,
-        //     image: movie.ImagePath
-        //   }
-        // })
+        const moviesFromApi = data.map((movie) => {
+          return {
+            _id: movie._id,
+            Title: movie.Title,
+            Description: movie.Description,
+            ImagePath: movie.ImagePath,
+            Director: movie.Director,
+            Genre: movie.Genre
+          };
+        });
+        setMovies(moviesFromApi);
       });
-    // setMovies(moviesFromApi);
   }, []);
+
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   //if SelectedMovie is not null
   if (selectedMovie) {
     return (
-      <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-    )
-  };
+      <div>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => setSelectedMovie(null)} />
+      </div>
+    );
+  }
 
 
 
@@ -37,19 +46,20 @@ export const MainView = () => {
   if (movies.length === 0) {
     return <div> The list is empty!</div>
   }
-  //if book state is not empty array
+  //if Movie state is not empty array
   return (
     <div className="my-flix">
       <div>
-        {movies.map((movie => {
-          return <MovieCard key={movie._id} movie={movie}
+        {movies.map((movie) =>
+          < MovieCard
+            key={movie._id}
+            movie={movie}
             onMovieClick={(newSelectedMovie) => {
               setSelectedMovie(newSelectedMovie)
             }}
-          />;
-        }))}
+          />)
+        }
       </div>
-      <button>Test</button>
     </div>
   );
 };

@@ -3,7 +3,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
     <div
       onClick={() => { onMovieClick(movie) }
       }
-
-    > {movie.Title}</div >
+    >
+      {movie.Title}
+    </div >
   )
 };
