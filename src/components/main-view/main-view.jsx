@@ -1,15 +1,27 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
+  //localStorage loggined user
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
 
+  //useState hooks
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
 
   //fetch movies data from API
   useEffect(() => {
-    fetch("https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/movies")
+    if (!token) { return; }
+    fetch("https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("movies from api:", data);
@@ -25,9 +37,22 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       });
-  }, []);
+  }, [token]);
 
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  //show LoginView if no user
+  if (!user) {
+    return (
+      <>
+        <LoginView onLoggedin={(user, token) => {
+          setUser(user);
+          setToken(token)
+        }} />
+        or
+        < SignupView />
+      </>
+
+    )
+  }
 
   //if SelectedMovie is not null
   if (selectedMovie) {
@@ -39,7 +64,6 @@ export const MainView = () => {
       </div>
     );
   }
-
 
 
   //if Movie state is empty array
@@ -60,6 +84,9 @@ export const MainView = () => {
           />)
         }
       </div>
+      <button onClick={() => { setUser(null); setToken(null); localStorage.clear() }}>
+        Logout
+      </button>
     </div>
   );
 };
