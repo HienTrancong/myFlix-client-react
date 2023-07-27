@@ -72,7 +72,7 @@ export const MainView = () => {
   }
   //if Movie state is not empty array
   return (
-    <div className="my-flix">
+    <div>
       <div>
         {movies.map((movie) =>
           < MovieCard

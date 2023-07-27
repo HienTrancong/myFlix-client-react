@@ -7,15 +7,21 @@ export const LoginView = ({ onLoggedin }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const data = {
-      access: username,
-      secret: password
+      Username: username,
+      Password: password
     };
-    fetch("https://openlibrary.org/account/login.json", {
+
+    // fetch(`https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/login?Username=${data.Username}&Password=${data.Password}`, {
+    fetch("https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/login", {
       method: "POST",
-      body: JSON.stringify(data)
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
     })
-      .then((response) => response.json())
+      .then((response) => response.json(), console.log(data))
       .then((data) => {
         console.log("Login response:", data);
         if (data.user) {
@@ -23,7 +29,7 @@ export const LoginView = ({ onLoggedin }) => {
           localStorage.setItem("token", data.token);
           onLoggedin(data.user, data.token);
         } else {
-          alert("No such user");
+          alert("No such user here");
         }
       })
       .catch((e) => {
@@ -35,11 +41,21 @@ export const LoginView = ({ onLoggedin }) => {
     <form onSubmit={handleSubmit}>
       <label>
         Username
-        <input type="text" />
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
       </label>
       <label>
         Password
-        <input type="password" />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
       </label>
       <button type="submit">
         Submit
