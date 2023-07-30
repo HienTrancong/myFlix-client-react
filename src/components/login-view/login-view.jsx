@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Container, Row, Col, Card, CardGroup, Button, Form } from 'react-bootstrap';
 
 export const LoginView = ({ onLoggedin }) => {
 
@@ -38,28 +39,47 @@ export const LoginView = ({ onLoggedin }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">
-        Submit
-      </button>
-    </form>
+    <Container>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card>
+              <Card.Body>
+                <Card.Title>Login</Card.Title>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>
+                      Username
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                    >
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label>
+                      Password
+                    </Form.Label>
+                    <Form.Control
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    >
+                    </Form.Control>
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Login
+                  </Button>
+                </Form>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container>
   );
 };

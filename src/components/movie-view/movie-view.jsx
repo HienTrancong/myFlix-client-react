@@ -1,17 +1,30 @@
+
+
+import { CardGroup, Card, Button, Container, CardImg, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <div>
-      <div>
-        <img src={movie.ImagePath} height={500} />
-      </div>
-      <div>
-        {movie.Title}
-      </div>
-      <div>
-        <span>Director:</span>
-        <span>{movie.Director.Name}</span>
-      </div>
-      <button onClick={onBackClick}>Back</button>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <CardGroup>
+            <Card >
+              <CardImg
+                src={movie.ImagePath} />
+              <Card.Body>
+                <Card.Title>{movie.Title}</Card.Title>
+                <ListGroup>
+                  <ListGroupItem>Description: {movie.Description}</ListGroupItem>
+                  <ListGroupItem>Director: {movie.Director.Name}</ListGroupItem>
+                </ListGroup>
+                <Button variant="primary" onClick={onBackClick}>
+                  Back
+                </Button>
+              </Card.Body>
+            </Card>
+          </CardGroup>
+        </Col>
+      </Row>
+    </Container >
   )
 };
