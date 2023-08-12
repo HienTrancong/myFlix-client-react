@@ -14,7 +14,6 @@ export const LoginView = ({ onLoggedin }) => {
       Password: password
     };
 
-    // fetch(`https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/login?Username=${data.Username}&Password=${data.Password}`, {
     fetch("https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/login", {
       method: "POST",
       headers: {
