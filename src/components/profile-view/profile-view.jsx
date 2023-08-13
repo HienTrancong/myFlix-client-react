@@ -23,7 +23,7 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
     return user.FavoriteMovies.includes(movie._id)
   });
 
-  //update user
+  //update Uuser
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = {
@@ -32,26 +32,28 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
       Email: email,
       Birthday: birthday
     };
+    console.log(user);
     fetch(`https://myflix-moviesdata-api-2a7e65490948.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
-      body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
     }).then((response) => {
       if (response.ok) {
-        return (
-          response.json(),
-          alert("Update successful")
-        )
+        alert("Update successful");
+        return response.json();
       } else {
         alert("Update failed");
       }
     }).then((data) => {
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
-    })
+    }).catch((error) => {
+      console.log(error);
+      alert("Something went wrong");
+    });
   };
 
   //Delete user
@@ -72,39 +74,92 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
       }
     });
   }
-
-
-  console.log("here fav", favoriteMovies);
   return (
-    <Container>
-      <Row>
-        <Col>
+    <>
+      <Col md={6}>
+        <Card className="mt-2 mb-3">
           <h1>User Profile</h1>
           {console.log("here!", user, favoriteMovies)}
           <p>Username: {user.Username}</p>
           <p>Email: {user.Email}</p>
           <div>Birthday: {user.Birthday.slice(0, 10)}</div>
-        </Col>
-        <Link to={"/updateUser"}>
-          <Button variant="primary" type="submit">
-            Update user info
-          </Button>
-        </Link >
-        <Button variant="danger" type="submit" onClick={handleDeleteUser}>
-          Deregister
+        </Card>
+        <Button
+          variant="danger" type="submit" className="mt-3" onClick={handleDeleteUser}>
+          Delete account
         </Button>
+      </Col>
+      <Col md={6}>
+        <Card className="mt-2 mb-3">
+          <Card.Body>
+            <Card.Title>Update info</Card.Title>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group>
+                <Form.Label>
+                  Username
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  minLength="5"
+                  className="bg-light"
+                >
+                </Form.Control>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Password
+                </Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  minLength="5"
+                >
+                </Form.Control>
+                <Form.Text className="text-muted">
+                  Password is required
+                </Form.Text>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Email
+                </Form.Label>
+                <Form.Control
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                >
+                </Form.Control>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>
+                  Birthday
+                </Form.Label>
+                <Form.Control
+                  type="date"
+                  value={birthday}
+                  onChange={(e) => setBirthday(e.target.value)}
+                >
+                </Form.Control>
+              </Form.Group>
+              <Button variant="primary" type="submit" className="mt-3">
+                Update
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Col>
 
-      </Row>
-      <Row>
-        <Col>
-          <h1>Favorite movies</h1>
-          {favoriteMovies.map((movie) =>
-            <Col className="mb-4" key={movie._id} md={3}>
-              <MovieCard movie={movie} />
-            </Col>
-          )}
-        </Col>
-      </Row>
-    </Container >
-  )
+      <Col md={12}>
+        <h3 className="mt-3 mb-3">Favorite movies</h3>
+      </Col>
+      {favoriteMovies.map((movie) =>
+      (<Col className="mb-4" key={movie._id} xl={2} lg={3} md={4} xs={6}>
+        <MovieCard movie={movie} />
+      </Col>
+      ))}
+    </>
+  );
 };

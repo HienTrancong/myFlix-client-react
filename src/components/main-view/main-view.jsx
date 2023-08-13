@@ -23,11 +23,21 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  //hooks to filter movies by search function
+  const [filterMovies, setFilterMovies] = useState([]);
+
   //onLogout function
   const onLogout = () => {
     setUser(null);
     setToken(null);
     localStorage.clear()
+  }
+
+  //search function
+  const handleSearchInput = (e) => {
+    const searchWord = e.target.value.toLowerCase();
+    let tempArray = movies.filter((movie) => movie.Title.toLowerCase().includes(searchWord));
+    setFilterMovies(tempArray);
   }
 
   //fetch movies data from API
@@ -56,7 +66,8 @@ export const MainView = () => {
     <BrowserRouter>
       <NavbarView
         user={user}
-        onLogout={onLogout} />
+        onLogout={onLogout}
+        handleSearchInput={handleSearchInput} />
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -111,25 +122,6 @@ export const MainView = () => {
             }
           />
           <Route
-            path="/updateUser"
-            element={
-              <>
-                {!user ? (
-                  <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col> The list is empty!</Col>
-                ) : (
-                  <Col md={5}>
-                    <UpdateUser
-                      user={user}
-                      token={token}
-                      setUser={setUser}
-                    />
-                  </Col>
-                )}
-              </>
-            } />
-          <Route
             path="/movies/:movieId"
             element={
               <>
@@ -161,8 +153,15 @@ export const MainView = () => {
                   // ) : 
                   (
                     <>
-                      {movies.map((movie) =>
-                        <Col className="mb-4" key={movie._id} md={3}>
+                      {filterMovies.map((movie) =>
+                        <Col
+                          className="mb-4"
+                          key={movie._id}
+                          xl={2}
+                          lg={3}
+                          md={4}
+                          xs={6}
+                        >
                           < MovieCard
                             movie={movie}
                           />

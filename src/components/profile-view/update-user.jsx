@@ -60,6 +60,7 @@ export const UpdateUser = ({ user, token, setUser }) => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       minLength="5"
+                      className="bg-light"
                     >
                     </Form.Control>
                   </Form.Group>
@@ -100,7 +101,7 @@ export const UpdateUser = ({ user, token, setUser }) => {
                     >
                     </Form.Control>
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" className="mt-3">
                     Update
                   </Button>
                 </Form>

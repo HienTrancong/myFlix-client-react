@@ -42,35 +42,48 @@ export const LoginView = ({ onLoggedin }) => {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
+            <Card className="mt-2 mb-3">
               <Card.Body>
                 <Card.Title>Login</Card.Title>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group>
                     <Form.Label>
-                      Username
+                      Username:
                     </Form.Label>
                     <Form.Control
                       type="text"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       required
+                      minLength="5"
+                      className="bg-light"
                     >
                     </Form.Control>
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>
-                      Password
+                      Password:
                     </Form.Label>
                     <Form.Control
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      className="bg-light"
                     >
                     </Form.Control>
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button
+                    style={{
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      padding: '10px 20px',
+                    }}
+                    variant="primary"
+                    type="submit"
+                    className="mt-3"
+                  >
                     Login
                   </Button>
                 </Form>

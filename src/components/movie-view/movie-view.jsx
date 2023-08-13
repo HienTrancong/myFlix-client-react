@@ -55,36 +55,74 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col>
-          <CardGroup>
-            <Card className="mt-1 mb-1 h-10 bg-secondary text-white">
-              <CardImg variant="top"
-                src={movie.ImagePath} />
-              <Card.Body>
-                <Card.Title>{movie.Title}</Card.Title>
-                <ListGroup>
-                  <ListGroupItem>Description: {movie.Description}</ListGroupItem>
-                  <ListGroupItem>Director: {movie.Director.Name}</ListGroupItem>
-                </ListGroup>
+    <>
+      <>
+        <Col md={12}>
+          <div>
+            <img
+              className="float-start me-3 mb-2"
+              src={movie.ImagePath}
+              alt="Movie Cover Image"
+              style={{ maxWidth: '200px', height: 'auto' }}
+            />
+            <h2>
+              {movie.Title}
+            </h2>
+            <p>{movie.Description}</p>
+            <h4>Genre: {movie.Genre.Name}</h4>
 
-              </Card.Body>
-              {isFavorite ? (
-                <Button onClick={removeFavorite}>Remove from favorites</Button>
-              ) : (
-                <Button onClick={addFavorite}>Add to favorites</Button>
-              )
-
-              }
-              <Link to={`/`}>
-                <Button className="back-button">Back</Button>
-              </Link>
-            </Card>
-
-          </CardGroup>
+            <p>{movie.Genre.Description}</p>
+            <h5> Director: {movie.Director.Name} ({movie.Director.Birth}
+              {movie.Director.Death
+                ? ` - ${movie.Director.Death}`
+                : ''})
+            </h5>
+            <p>{movie.Director.Bio}</p>
+            <Link to={'/'}>
+              <Button variant="primary">Back</Button>
+            </Link>
+            {isFavorite ? (
+              <Button variant="danger" className="ms-2" onClick={removeFavorite}>
+                Remove from favorites
+              </Button>
+            ) : (
+              <Button variant="success" className="ms-2" onClick={addFavorite}>
+                Add to favorites
+              </Button>
+            )}
+          </div>
         </Col>
-      </Row>
-    </Container >
+      </>
+      {/* <Col md={12}>
+        <CardGroup>
+          <Card className="mt-1 mb-1 h-10 bg-secondary text-white">
+            <CardImg variant="top"
+              src={movie.ImagePath}
+              style={{ maxWidth: '200px', height: 'auto' }}
+            />
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
+              <ListGroup>
+                <ListGroupItem>Description: {movie.Description}</ListGroupItem>
+                <ListGroupItem>Director: {movie.Director.Name}</ListGroupItem>
+              </ListGroup>
+
+            </Card.Body>
+            {isFavorite ? (
+              <Button onClick={removeFavorite}>Remove from favorites</Button>
+            ) : (
+              <Button onClick={addFavorite}>Add to favorites</Button>
+            )
+
+            }
+            <Link to={`/`}>
+              <Button className="back-button">Back</Button>
+            </Link>
+          </Card>
+
+        </CardGroup>
+      </Col> */}
+
+    </>
   )
 };
