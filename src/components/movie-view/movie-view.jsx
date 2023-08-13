@@ -57,7 +57,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   return (
     <>
       <>
-        <Col md={12}>
+        <Col md={8}>
           <div>
             <img
               className="float-start me-3 mb-2"

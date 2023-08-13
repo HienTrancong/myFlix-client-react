@@ -109,14 +109,14 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to="/login" />
                 ) : (
-                  <Col>
-                    <ProfileView
-                      user={user}
-                      movies={movies}
-                      token={token}
-                      setUser={setUser}
-                      onLogout={onLogout} />
-                  </Col>
+
+                  <ProfileView
+                    user={user}
+                    movies={movies}
+                    token={token}
+                    setUser={setUser}
+                    onLogout={onLogout} />
+
                 )}
               </>
             }
@@ -130,14 +130,12 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <Col> The list is empty!</Col>
                 ) : (
-                  <Col md={5}>
-                    <MovieView
-                      movies={movies}
-                      user={user}
-                      token={token}
-                      setUser={setUser}
-                    />
-                  </Col>
+                  <MovieView
+                    movies={movies}
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                  />
                 )}
               </>
             } />
