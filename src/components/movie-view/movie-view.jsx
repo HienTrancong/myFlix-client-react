@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
 
+
+import { useState, useEffect } from "react";
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import "./movie-view.scss";
@@ -57,7 +58,13 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   return (
     <>
       <>
-        <Col md={8}>
+        <Col md={8}
+          style={{
+            border: 'none',
+            padding: '20px 20px 20px 20px',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+            transition: 'transform 0.2s ease-in-out',
+          }}>
           <div>
             <img
               className="float-start me-3 mb-2"
@@ -93,36 +100,6 @@ export const MovieView = ({ movies, user, token, setUser }) => {
           </div>
         </Col>
       </>
-      {/* <Col md={12}>
-        <CardGroup>
-          <Card className="mt-1 mb-1 h-10 bg-secondary text-white">
-            <CardImg variant="top"
-              src={movie.ImagePath}
-              style={{ maxWidth: '200px', height: 'auto' }}
-            />
-            <Card.Body>
-              <Card.Title>{movie.Title}</Card.Title>
-              <ListGroup>
-                <ListGroupItem>Description: {movie.Description}</ListGroupItem>
-                <ListGroupItem>Director: {movie.Director.Name}</ListGroupItem>
-              </ListGroup>
-
-            </Card.Body>
-            {isFavorite ? (
-              <Button onClick={removeFavorite}>Remove from favorites</Button>
-            ) : (
-              <Button onClick={addFavorite}>Add to favorites</Button>
-            )
-
-            }
-            <Link to={`/`}>
-              <Button className="back-button">Back</Button>
-            </Link>
-          </Card>
-
-        </CardGroup>
-      </Col> */}
-
     </>
   )
 };

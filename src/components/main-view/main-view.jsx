@@ -4,7 +4,6 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
-import { UpdateUser } from "../profile-view/update-user";
 import { NavbarView } from "../navbar-view/navbar-view";
 import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -67,8 +66,9 @@ export const MainView = () => {
       <NavbarView
         user={user}
         onLogout={onLogout}
-        handleSearchInput={handleSearchInput} />
-      <Row className="justify-content-md-center">
+        handleSearchInput={handleSearchInput}
+        style={{ paddingLeft: 0, paddingRight: 0 }} />
+      <Row className="justify-content-md-center" style={{ paddingLeft: 0, paddingRight: 0 }}>
         <Routes>
           <Route
             path="/signup"

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Form, Button, Card, CardGroup, Container, Col, Row } from "react-bootstrap";
 export const SignupView = () => {
@@ -37,7 +38,13 @@ export const SignupView = () => {
       <Row>
         <Col>
           <CardGroup>
-            <Card>
+            <Card style={{
+              border: 'none',
+              borderRadius: '10px',
+              padding: '5px',
+              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+              transition: 'transform 0.2s ease-in-out',
+            }}>
               <Card.Body>
                 <Card.Title>Please register</Card.Title>
 
@@ -52,11 +59,10 @@ export const SignupView = () => {
                       onChange={(e) => setUsername(e.target.value)}
                       required
                       minLength="5"
+                      className="bg-light"
                     >
                     </Form.Control>
-                    <Form.Text className="text-muted">
-                      Username should be more than 5 characters.
-                    </Form.Text>
+
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>
@@ -68,11 +74,10 @@ export const SignupView = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       minLength="5"
+                      className="bg-light"
                     >
                     </Form.Control>
-                    <Form.Text className="text-muted">
-                      Password should be more than 5 characters.
-                    </Form.Text>
+
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>
@@ -83,11 +88,9 @@ export const SignupView = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
+                      className="bg-light"
                     >
                     </Form.Control>
-                    <Form.Text className="text-muted">
-                      We'll never share your email with anyone else.
-                    </Form.Text>
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>
@@ -98,10 +101,20 @@ export const SignupView = () => {
                       value={birthday}
                       onChange={(e) => setBirthday(e.target.value)}
                       required
+                      className="bg-light"
                     >
                     </Form.Control>
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit"
+                    style={{
+                      color: '#fff',
+                      border: 'none',
+                      borderRadius: '5px',
+                      padding: '10px 20px',
+
+                    }}
+                    className="mt-3"
+                  >
                     Signup
                   </Button>
                 </Form>

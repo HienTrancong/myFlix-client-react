@@ -1,3 +1,6 @@
+
+//TODO  add remove fav button
+
 import React, { useState, useEffect } from 'react';
 import { Button, Container, Row, Col, Form, Modal, Card, CardGroup, } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
@@ -77,20 +80,34 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
   return (
     <>
       <Col md={6}>
-        <Card className="mt-2 mb-3">
-          <h1>User Profile</h1>
-          {console.log("here!", user, favoriteMovies)}
-          <p>Username: {user.Username}</p>
-          <p>Email: {user.Email}</p>
-          <div>Birthday: {user.Birthday.slice(0, 10)}</div>
+        <Card className="mt-2 mb-3"
+          style={{
+            border: 'none',
+            padding: '5px',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+            transition: 'transform 0.2s ease-in-out',
+          }}>
+          <Card.Body>
+            <Card.Title>Profile</Card.Title>
+            {console.log("here!", user, favoriteMovies)}
+            <p>Username: {user.Username}</p>
+            <p>Email: {user.Email}</p>
+            <div>Birthday: {user.Birthday.slice(0, 10)}</div>
+            <Button
+              variant="danger" type="submit" className="mt-3" onClick={handleDeleteUser}>
+              Delete account
+            </Button>
+          </Card.Body>
         </Card>
-        <Button
-          variant="danger" type="submit" className="mt-3" onClick={handleDeleteUser}>
-          Delete account
-        </Button>
       </Col>
       <Col md={6}>
-        <Card className="mt-2 mb-3">
+        <Card className="mt-2 mb-3"
+          style={{
+            border: 'none',
+            padding: '5px',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.3)',
+            transition: 'transform 0.2s ease-in-out',
+          }}>
           <Card.Body>
             <Card.Title>Update info</Card.Title>
             <Form onSubmit={handleSubmit}>
