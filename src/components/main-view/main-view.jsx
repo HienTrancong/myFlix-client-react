@@ -5,13 +5,13 @@ import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavbarView } from "../navbar-view/navbar-view";
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 
 export const MainView = () => {
 
-  //localStorage info about loggined user
+  //localStorage info about logged in user
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
 
@@ -30,13 +30,6 @@ export const MainView = () => {
     setUser(null);
     setToken(null);
     localStorage.clear()
-  }
-
-  //search function
-  const handleSearchInput = (e) => {
-    const searchWord = e.target.value.toLowerCase();
-    let tempArray = movies.filter((movie) => movie.Title.toLowerCase().includes(searchWord));
-    setFilterMovies(tempArray);
   }
 
   //fetch movies data from API
@@ -61,6 +54,19 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, [token]);
+
+  //hooks to set movies by filtered movies
+  useEffect(() => {
+    setFilterMovies(movies);
+  }, [movies]);
+
+  //search function
+  const handleSearchInput = (e) => {
+    const searchWord = e.target.value.toLowerCase();
+    let tempArray = movies.filter((movie) => movie.Title.toLowerCase().includes(searchWord));
+    setFilterMovies(tempArray);
+  }
+
   return (
     <BrowserRouter>
       <NavbarView
@@ -146,28 +152,28 @@ export const MainView = () => {
                 {!user ? (
                   <Navigate to="/login" replace />
                 ) :
-                  // movies.length === 0 ? (
-                  //   <Col> The list is empty!</Col>
-                  // ) : 
-                  (
-                    <>
-                      {filterMovies.map((movie) =>
-                        <Col
-                          className="mb-4"
-                          key={movie._id}
-                          xl={2}
-                          lg={3}
-                          md={4}
-                          xs={6}
-                        >
-                          < MovieCard
-                            movie={movie}
-                          />
-                        </Col>
-                      )
-                      }
-                    </>
-                  )}
+                  movies.length === 0 ? (
+                    <Col> The list is empty!</Col>
+                  ) :
+                    (
+                      <>
+                        {filterMovies.map((movie) =>
+                          <Col
+                            className="mb-4"
+                            key={movie._id}
+                            xl={2}
+                            lg={3}
+                            md={4}
+                            xs={6}
+                          >
+                            < MovieCard
+                              movie={movie}
+                            />
+                          </Col>
+                        )
+                        }
+                      </>
+                    )}
               </>
             }
           />

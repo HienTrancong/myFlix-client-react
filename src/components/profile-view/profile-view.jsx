@@ -1,8 +1,8 @@
 
 //TODO  add remove fav button
 
-import React, { useState, useEffect } from 'react';
-import { Button, Container, Row, Col, Form, Modal, Card, CardGroup, } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Col, Form, Card, } from 'react-bootstrap';
 import { MovieCard } from '../movie-card/movie-card';
 import { Link } from 'react-router-dom';
 
@@ -11,15 +11,6 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birhday);
-  const [showModal, setShowModal] = useState(false);
-
-  //modal when delete profile
-  const handleShowModal = () => {
-    setShowModal(true);
-  }
-  const handleCloseModal = () => {
-    setShowModal(false);
-  }
 
   //Filter movies to include array of user's favoritemovies id
   let favoriteMovies = movies.filter((movie) => {

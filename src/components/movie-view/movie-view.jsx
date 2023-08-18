@@ -1,11 +1,9 @@
 
-
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import "./movie-view.scss";
 
-import { CardGroup, Card, Button, Container, CardImg, ListGroup, ListGroupItem, Row, Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 export const MovieView = ({ movies, user, token, setUser }) => {
   const { movieId } = useParams();
