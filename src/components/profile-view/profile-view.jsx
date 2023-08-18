@@ -124,6 +124,7 @@ export const ProfileView = ({ user, token, movies, setUser, onLogout }) => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   minLength="5"
+                  required
                 >
                 </Form.Control>
                 <Form.Text className="text-muted">
